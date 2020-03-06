@@ -18,7 +18,7 @@ class _EnglishToIndoState extends State<EnglishToIndo> {
   bool _showOriginalText = false;
   bool showTranslation = false;
 
-  void pickImage()async{
+  Future pickImage()async{
     var temp = await ImagePicker.pickImage(source: ImageSource.camera);
     setState(() {
       PickedImage = temp;
@@ -56,9 +56,11 @@ class _EnglishToIndoState extends State<EnglishToIndo> {
         translateImage();
       },
       showOriginalText:_showOriginalText,
+      originalText: 'Original Text',
       wordTemp: wordText,
       showTranslation: showTranslation,
       imageTrans: imageTrans,
+      terjemahText: 'Terjemahan',
     );
   }
 }

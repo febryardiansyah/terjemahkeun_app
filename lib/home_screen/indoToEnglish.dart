@@ -31,7 +31,7 @@ class _IndoToEnglishState extends State<IndoToEnglish> {
       showOriginalText = true;
     });
   }
-  void translateImage(){
+  void translateImage()async{
     setState(() {
       showTranslatinon = true;
     });
@@ -40,7 +40,7 @@ class _IndoToEnglishState extends State<IndoToEnglish> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Indonesia Ke English'),
+        title: Text('Indonesia Ke Bahasa Inggris'),
         backgroundColor: Color(0xFF33B6FF),
       ),
       body: SingleChildScrollView(
@@ -95,7 +95,9 @@ class _IndoToEnglishState extends State<IndoToEnglish> {
               showTranslate?Center(
                 child: RaisedButton(
                   color: Colors.blue,
-                  onPressed: (){},
+                  onPressed: (){
+                    translateImage();
+                  },
                   child: Container(
                     height: 30,
                     width: 100,

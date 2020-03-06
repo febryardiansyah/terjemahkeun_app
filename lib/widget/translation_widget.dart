@@ -10,6 +10,8 @@ class TranslationWidget extends StatelessWidget {
   String wordTemp;
   String imageTrans;
   String terjemahkan;
+  String originalText;
+  String terjemahText;
   File pickedImage;
   GestureTapCallback tapAmbilGambar;
   GestureTapCallback tapBacaGambar;
@@ -24,7 +26,7 @@ class TranslationWidget extends StatelessWidget {
       this.bacaGambar, this.wordTemp, this.imageTrans, this.terjemahkan,
       this.pickedImage, this.tapAmbilGambar, this.tapBacaGambar,
       this.isImageLoaded, this.showTranslateBtn, this.showOriginalText,
-      this.showTranslation, this.tapTranslateGambar});
+      this.showTranslation, this.tapTranslateGambar,this.terjemahText,this.originalText});
 
   @override
   Widget build(BuildContext context) {
@@ -90,13 +92,12 @@ class TranslationWidget extends StatelessWidget {
                   ),
                 ),
               ):Center(),
-              SizedBox(height: 20,),
-              showOriginalText?Text('Original Text',style: TextStyle(color: Colors.grey),):Container(),
+              showOriginalText?Text(originalText,style: TextStyle(color: Colors.grey),):Container(),
               Padding(
                 padding: EdgeInsets.only(left: 20,right: 20,top: 10),
                 child: SelectableText(wordTemp,textAlign: TextAlign.justify,),
               ),
-              showTranslation?Text('Translation to english',style: TextStyle(color: Colors.grey),):Container(),
+              showTranslation?Text(terjemahText,style: TextStyle(color: Colors.grey),):Container(),
               Padding(
                 padding: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 20),
                 child: SelectableText(imageTrans,textAlign: TextAlign.justify,),
