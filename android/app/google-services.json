@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "182569615150",
+    "firebase_url": "https://ml-kit-46948.firebaseio.com",
+    "project_id": "ml-kit-46948",
+    "storage_bucket": "ml-kit-46948.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182569615150:android:a4fa8f5b61b6c83ace04bf",
+        "android_client_info": {
+          "package_name": "com.febryardiansyah.terjemahkeun_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "182569615150-00dq4uilsk1tkk9s29j5ichas8n654m8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCL4NAV8FbeHIx_tbz4WjGvJf5IJNP3E9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "182569615150-00dq4uilsk1tkk9s29j5ichas8n654m8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
