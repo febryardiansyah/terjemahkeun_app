@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
       pesan = 'Sudah Makan Malam ??';
       return pesan;
     }else{
-      pesan = 'Jangan Lupa Tidur, jaga kesehatanmu';
+      pesan = 'Jangan Lupa Tidur';
       return pesan;
     }
   }
@@ -127,6 +127,8 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 20,),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 boxBahasa(
                   onTap: (){
@@ -159,7 +161,7 @@ class _HomePageState extends State<HomePage> {
     return InkWell(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.only(left: 30),
+        margin: EdgeInsets.all(10),
         height: 70,
         width: 150,
         decoration: BoxDecoration(

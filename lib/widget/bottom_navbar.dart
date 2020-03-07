@@ -21,7 +21,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
     // TODO: implement initState
     super.initState();
   }
-
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     
@@ -44,7 +48,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: GNav(
-              gap: 8,
+              gap: 1,
               color: Colors.white,
               iconSize: 24,
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),

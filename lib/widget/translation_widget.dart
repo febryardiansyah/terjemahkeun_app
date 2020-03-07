@@ -41,14 +41,18 @@ class TranslationWidget extends StatelessWidget {
           alignment: Alignment.center,
           child: Column(
             children: <Widget>[
-              isImageLoaded?Container(
-                height: 300,
-                width: 300,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: FileImage(pickedImage),
-                    fit: BoxFit.fill
-                  )
+              isImageLoaded?Card(
+                elevation: 4,
+                child: Container(
+                  margin: EdgeInsets.all(10),
+                  height: 300,
+                  width: 300,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: FileImage(pickedImage),
+                      fit: BoxFit.fill
+                    )
+                  ),
                 ),
               ):Center(child: Text(gambarLoaded),),
               Row(
@@ -92,11 +96,13 @@ class TranslationWidget extends StatelessWidget {
                   ),
                 ),
               ):Center(),
+              SizedBox(height: 20,),
               showOriginalText?Text(originalText,style: TextStyle(color: Colors.grey),):Container(),
               Padding(
                 padding: EdgeInsets.only(left: 20,right: 20,top: 10),
                 child: SelectableText(wordTemp,textAlign: TextAlign.justify,),
               ),
+              SizedBox(height: 20,),
               showTranslation?Text(terjemahText,style: TextStyle(color: Colors.grey),):Container(),
               Padding(
                 padding: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 20),

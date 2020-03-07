@@ -1,8 +1,10 @@
 import 'dart:io';
 
-import 'package:camera/camera.dart';
+import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:translator/translator.dart';
+import 'package:terjemahkeun_app/widget/translation_widget.dart';
 
 class IndoToEnglish extends StatefulWidget {
   @override
@@ -10,116 +12,130 @@ class IndoToEnglish extends StatefulWidget {
 }
 
 class _IndoToEnglishState extends State<IndoToEnglish> {
-  File pickedImage;
+  File PickedImage;
   String wordText = '';
-  String imgaeTrans = '';
-  bool _isImageLoad = false;
-  bool showTranslate = false;
-  bool showOriginalText = false;
-  bool showTranslatinon = false;
+  String imageTrans = '';
+  String isTextNull = '';
+  bool ifTextnotNull = false;
+  bool isImageLoaded = false;
+  bool _showTranslateButtn =false;
+  bool _showOriginalText = false;
+  bool showTranslation = false;
+  final GoogleTranslator translator = GoogleTranslator();
 
-  void pickImage() async{
-    var temp = await ImagePicker.pickImage(source: ImageSource.gallery);
+  Future pickImage()async{
     setState(() {
-      pickedImage = temp;
-      _isImageLoad = true;
+      _showTranslateButtn = false;
+      _showOriginalText = false;
+      showTranslation = false;
+      wordText = '';
+      imageTrans = '';
+      isTextNull = '';
+    });
+    return showModalBottomSheet(
+        context: context,
+        backgroundColor: Colors.transparent,
+        builder: (BuildContext context){
+          return Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10)),
+                color: Colors.white
+            ),
+            child: Wrap(
+              children: <Widget>[
+                ListTile(
+                  leading: Icon(Icons.image),
+                  title: Text('Dari Galeri'),
+                  onTap: ()async{
+                    var temp = await ImagePicker.pickImage(source: ImageSource.gallery);
+                    setState(() {
+                      if(temp != null){
+                        PickedImage = temp;
+                        isImageLoaded = true;
+                        Navigator.pop(context);
+                      }
+                    });
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.camera_alt),
+                  title: Text('Dari Kamera'),
+                  onTap: ()async{
+                    var temp = await ImagePicker.pickImage(source: ImageSource.camera);
+                    setState(() {
+                      if(temp != null) {
+                        PickedImage = temp;
+                        isImageLoaded = true;
+                        Navigator.pop(context);
+                      }
+                    });
+                  },
+                )
+              ],
+            ),
+          );
+        }
+    );
+  }
+  Future readImage()async{
+    final FirebaseVisionImage myImage = FirebaseVisionImage.fromFile(PickedImage);
+    TextRecognizer textRecognizer = FirebaseVision.instance.textRecognizer();
+    VisionText visionText = await textRecognizer.processImage(myImage);
+    for(TextBlock textBlock in visionText.blocks){
+      for(TextLine textLine in textBlock.lines){
+        for(TextElement textElement in textLine.elements){
+          setState(() {
+            wordText += textElement.text.toLowerCase() + ' ';
+            print(wordText);
+          });
+        }
+      }
+    }
+    setState(() {
+      _showOriginalText = true;
+      _showTranslateButtn = true;
+      ifTextnotNull = true;
+      if(wordText == ''){
+        ifTextnotNull = false;
+        isTextNull = 'Tidak ada teks di dalam gambar';
+        return print('Tidak Ada ');
+      }
     });
   }
-  void readImage()async{
-    setState(() {
-      showTranslate = true;
-      showOriginalText = true;
-    });
-  }
-  void translateImage()async{
-    setState(() {
-      showTranslatinon = true;
+  Future translateImage()async{
+    await translator.translate(wordText,from: 'id',to: 'en').then((res){
+      setState(() {
+        imageTrans = res;
+        showTranslation = true;
+      });
     });
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Indonesia Ke Bahasa Inggris'),
-        backgroundColor: Color(0xFF33B6FF),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.only(top: 10),
-          alignment: Alignment.center,
-          child: Column(
-            children: <Widget>[
-              _isImageLoad?Container(
-                height: 300,
-                width: 300,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: FileImage(pickedImage),
-                    fit: BoxFit.fill
-                  )
-                ),
-              ):Center(child: Text('Tidak ada gambar yang dipilih'),),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: RaisedButton(
-                      color: Colors.blue,
-                      onPressed: (){
-                        pickImage();
-                      },
-                      child: Container(
-                        height: 30,
-                        width: 100,
-                        child: Center(child: Text('Ambil Gambar',style: TextStyle(color: Colors.white),)),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: RaisedButton(
-                      color: Colors.blue,
-                      onPressed: (){
-                        readImage();
-                      },
-                      child: Container(
-                        height: 30,
-                        width: 100,
-                        child: Center(child: Text('Baca Gambar',style: TextStyle(color: Colors.white),)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              showTranslate?Center(
-                child: RaisedButton(
-                  color: Colors.blue,
-                  onPressed: (){
-                    translateImage();
-                  },
-                  child: Container(
-                    height: 30,
-                    width: 100,
-                    child: Center(child: Text('Terjemahkan',style: TextStyle(color: Colors.white),),),
-                  ),
-                ),
-              ):Center(),
-              SizedBox(height: 20,),
-              showOriginalText?Text('Text Asli',style: TextStyle(color: Colors.grey),):Container(),
-              Padding(
-                padding: EdgeInsets.only(left: 20,right: 20,top: 10),
-                child: SelectableText(wordText,textAlign: TextAlign.justify,),
-              ),
-              showTranslatinon?Text('Terjemahan Ke Bahasa Inggris',style: TextStyle(color: Colors.grey),):Container(),
-              Padding(
-                padding: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 20),
-                child: SelectableText(imgaeTrans,textAlign: TextAlign.justify,),
-              )
-            ],
-          ),
-        ),
-      ),
+    return TranslationWidget(
+      judul: 'Indonesia ke Bahasa Inggris',
+      isImageLoaded: isImageLoaded,
+      pickedImage: PickedImage,
+      gambarLoaded: 'TIdak ada gambar yang dipilih',
+      tapAmbilGambar:(){
+        pickImage();
+      } ,
+      ambilGambar: 'Ambil gambar',
+      tapBacaGambar: (){
+        readImage();
+      },
+      bacaGambar: 'Baca Teks',
+      showTranslateBtn: _showTranslateButtn,
+      terjemahkan: 'Terjemahkan',
+      tapTranslateGambar: (){
+        translateImage();
+      },
+      showOriginalText:_showOriginalText,
+      originalText: 'Teks asli',
+      wordTemp: ifTextnotNull?wordText:isTextNull,
+      showTranslation: showTranslation,
+      imageTrans: imageTrans.toString(),
+      terjemahText: 'Terjemahan ke Bahasa Inggris',
     );
   }
 }
