@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:terjemahkeun_app/widget/gradient_bg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -14,24 +15,36 @@ class _SplashScreenState extends State<SplashScreen> {
     return new Timer(_durasi, navigtionPage);
   }
 
-  navigtionPage(){
+  void navigtionPage(){
     Navigator.pushReplacementNamed(context, '/navBar');
   }
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startTime();
+  }
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Gradient_BG(
-        child: Center(
-          child: Container(
-            height: 200,
-            width: 200,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('images/logoApp.png')
-              )
+    ScreenUtil.init(context);
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body:Center(
+        child: Column(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(top: ScreenUtil().setHeight(800)),
+              height: 70,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('images/logoApp.png')
+                  )
+              ),
             ),
-          ),
+            Text('by febry ardiansyah',style: TextStyle(color: Colors.black38),),
+            SizedBox(height: 20,),
+            SpinKitThreeBounce(color: Colors.blue,size: 30,)
+          ],
         ),
       ),
     );
