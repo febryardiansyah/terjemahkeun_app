@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:terjemahkeun_app/page/home_page.dart';
+import 'package:terjemahkeun_app/page/settings_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -21,8 +23,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();
     startTime();
+    HomePage();
+    SettingsPage();
+    super.initState();
   }
   @override
   Widget build(BuildContext context) {

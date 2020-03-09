@@ -33,6 +33,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     
     return Scaffold(
       body: _children[selectedPage],
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
         margin: EdgeInsets.only(left: ScreenUtil().setWidth(220),right: ScreenUtil().setWidth(200)),
         decoration: BoxDecoration(

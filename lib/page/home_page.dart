@@ -45,6 +45,7 @@ class _HomePageState extends State<HomePage> {
       return pesan;
     }
   }
+
   String saranMakan(){
     DateTime now = DateTime.now();
     var timeNow = int.parse(DateFormat('kk').format(now));
@@ -80,21 +81,21 @@ class _HomePageState extends State<HomePage> {
           Text(saranMakan(),style: TextStyle(color: Colors.white,fontSize: 20),),
           SizedBox(height: 20,),
           Text(tglSkrng(),style: TextStyle(color: Color(0xFF155753),fontSize: 30,fontWeight: FontWeight.bold),),
-          DigitalClock(
-            areaWidth: 150,
-            digitAnimationStyle: Curves.elasticOut,
-            is24HourTimeFormat: false,
-            areaDecoration: BoxDecoration(
-              color: Colors.transparent
-            ),
-            hourMinuteDigitTextStyle: TextStyle(color: Color(0xFF155753),fontSize: 30,fontWeight: FontWeight.bold),
-            amPmDigitTextStyle: TextStyle(color: Color(0xFF155753),fontWeight: FontWeight.bold),
-            hourMinuteDigitDecoration: BoxDecoration(
-              color: Colors.transparent
-            ),
-            showSecondsDigit: false,
-            secondDigitDecoration: BoxDecoration(color: Colors.transparent),
-          ),
+//          DigitalClock(
+//            areaWidth: 150,
+//            digitAnimationStyle: Curves.elasticOut,
+//            is24HourTimeFormat: false,
+//            areaDecoration: BoxDecoration(
+//              color: Colors.transparent
+//            ),
+//            hourMinuteDigitTextStyle: TextStyle(color: Color(0xFF155753),fontSize: 30,fontWeight: FontWeight.bold),
+//            amPmDigitTextStyle: TextStyle(color: Color(0xFF155753),fontWeight: FontWeight.bold),
+//            hourMinuteDigitDecoration: BoxDecoration(
+//              color: Colors.transparent
+//            ),
+//            showSecondsDigit: false,
+//            secondDigitDecoration: BoxDecoration(color: Colors.transparent),
+//          ),
         ],
       ),
     );
