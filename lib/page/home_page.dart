@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:slide_digital_clock/slide_digital_clock.dart';
 import 'package:terjemahkeun_app/home_screen/englishToIndo.dart';
 import 'package:terjemahkeun_app/home_screen/indoToEnglish.dart';
+import 'package:terjemahkeun_app/widget/box_pilih_bahasa.dart';
 import 'package:terjemahkeun_app/widget/gradient_bg.dart';
 
 class HomePage extends StatefulWidget {
@@ -45,7 +45,6 @@ class _HomePageState extends State<HomePage> {
       return pesan;
     }
   }
-
   String saranMakan(){
     DateTime now = DateTime.now();
     var timeNow = int.parse(DateFormat('kk').format(now));
@@ -131,7 +130,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                boxBahasa(
+                BoxPilihBahasa(
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>IndoToEnglish()));
                   },
@@ -141,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                   kata2: 'EN',
                   warnaHuruf: Colors.white
                 ),
-                boxBahasa(
+                BoxPilihBahasa(
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>EnglishToIndo()));
                   },
