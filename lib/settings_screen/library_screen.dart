@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LibraryScreen extends StatefulWidget {
   @override
@@ -18,47 +20,62 @@ class _LibraryScreenState extends State<LibraryScreen> {
     'expansion_tile_card: ^1.0.2+2'
 
   ];
+  void showSnackBarTitle(){
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Opps Link Rusak'),
+      )
+    );
+}
+  Future<void> _launchUrl( )async{
+    const url = 'https://flutter.dev';
+    if(await canLaunch(url)){
+      await launch(url);
+    }else{
+      throw 'url error $url';
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Library yang digunakan'),
-      ),
-      body: Stack(
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool scroll){
+          return <Widget>[
+            SliverAppBar(
+              floating: false,
+              pinned: true,
+              expandedHeight: 200,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Image.asset('images/triangle.jpeg',fit: BoxFit.cover,),
+                centerTitle: true,
+                collapseMode: CollapseMode.parallax,
+                title: Text('Library yang digunakan'),
+              ),
+            )
+          ];
+        },
+          body :Card(
+      margin: EdgeInsets.all(10),
+      child: Stack(
         children: <Widget>[
           ListView.builder(
-            padding: EdgeInsets.only(top: 70),
+            padding: EdgeInsets.only(top: 10),
             itemCount: _daftarLibrary.length,
             itemBuilder: (context, i){
-              return Padding(
-                padding: EdgeInsets.all(8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Card(
-                      elevation: 4,
-                      child: Container(
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.symmetric(horizontal: 10),
-                        height: 50,
-                          child: Text(_daftarLibrary[i])),
-                    )
-                  ],
-                ),
+              return Container(
+                margin: EdgeInsets.symmetric(horizontal: 10),
+                height: 40,
+                child: Text('${i+1} \t '+_daftarLibrary[i],style: TextStyle(color: Colors.grey),),
               );
             },
           ),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Disini saya membuat aplikasinya tidak murni sendiri, saya menggunakan '
-                  'beberapa Library/Package yang tersedia di Pub.dev. '
-                  'berikut adalah beberapa Library yang saya gunakan : ',
-                style: TextStyle(color: Colors.grey,),textAlign: TextAlign.left,
-              ),
-            ),
+          Padding(
+            padding: EdgeInsets.only(top: 400,left: 10),
+            child: Text('Source : Pub.dev',style: TextStyle(color: Colors.grey),),
           ),
         ],
+      ),
+    ),
       ),
     );
   }

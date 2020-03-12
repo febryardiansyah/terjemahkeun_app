@@ -32,6 +32,7 @@ dependencies:
   translator: ^0.1.4
   flutter_spinkit: ^3.1.0
   expansion_tile_card: ^1.0.2+2
+  url_launcher: ^5.4.2
 
 
 dev_dependencies:
@@ -60,6 +61,7 @@ flutter:
     - images/githubBox.png
     - images/introBox.png
     - images/forestSunset.jpg
+    - images/triangle.jpeg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

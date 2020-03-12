@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BoxPilihBahasa extends StatefulWidget {
-  final GestureDragCancelCallback onTap;
+  final GestureTapCallback onTap;
   final Color warnaHuruf;
   final Color color;
   final String kata1,kata2;
