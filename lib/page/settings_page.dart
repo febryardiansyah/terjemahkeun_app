@@ -96,13 +96,13 @@ class _SettingsPageState extends State<SettingsPage> {
               Row(
                 children: <Widget>[
                   Icon(Icons.email,color: Colors.white,size: 15,),
-                  Text('18104009@ittelkom-pwt.ac.id',style: TextStyle(color: Colors.white,fontSize: 15),),
+                  Text('18104009@ittelkom-pwt.ac.id',style: TextStyle(color: Colors.white,fontSize: ScreenUtil().setSp(40)),),
                 ],
               ),
               Row(
                 children: <Widget>[
                   Icon(Icons.location_on,color: Colors.white,size: 15,),
-                  Text('Purwokerto, Jawa Tengah',style: TextStyle(color: Colors.white,fontSize: 15),),
+                  Text('Purwokerto, Jawa Tengah',style: TextStyle(color: Colors.white,fontSize: ScreenUtil().setSp(40)),),
                 ],
               ),
               InkWell(
@@ -151,7 +151,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           ListTile(
             leading: Icon(Icons.library_books),
-            title: Text('Package yang digunakan'),
+            title: Text('Library yang digunakan'),
             trailing: Icon(Icons.arrow_forward_ios),
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>LibraryScreen()));

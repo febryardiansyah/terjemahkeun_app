@@ -45,37 +45,38 @@ class _LibraryScreenState extends State<LibraryScreen> {
               floating: false,
               pinned: true,
               expandedHeight: 200,
+              backgroundColor: Color(0xFF33B6FF),
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.asset('images/triangle.jpeg',fit: BoxFit.cover,),
                 centerTitle: true,
                 collapseMode: CollapseMode.parallax,
                 title: Text('Library yang digunakan'),
               ),
-            )
+            ),
           ];
         },
-          body :Card(
-      margin: EdgeInsets.all(10),
-      child: Stack(
-        children: <Widget>[
-          ListView.builder(
-            padding: EdgeInsets.only(top: 10),
-            itemCount: _daftarLibrary.length,
-            itemBuilder: (context, i){
-              return Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                height: 40,
-                child: Text('${i+1} \t '+_daftarLibrary[i],style: TextStyle(color: Colors.grey),),
-              );
-            },
+        body: Card(
+          margin: EdgeInsets.all(10),
+          child: Stack(
+            children: <Widget>[
+              ListView.builder(
+                padding: EdgeInsets.only(top: 10),
+                itemCount: _daftarLibrary.length,
+                itemBuilder: (context, i){
+                  return Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    height: 40,
+                    child: Text('${i+1} \t '+_daftarLibrary[i],style: TextStyle(color: Colors.grey),),
+                  );
+                },
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 400,left: 10),
+                child: Text('Source : Pub.dev',style: TextStyle(color: Colors.grey),),
+              ),
+            ],
           ),
-          Padding(
-            padding: EdgeInsets.only(top: 400,left: 10),
-            child: Text('Source : Pub.dev',style: TextStyle(color: Colors.grey),),
-          ),
-        ],
-      ),
-    ),
+        ),
       ),
     );
   }
