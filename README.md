@@ -15,4 +15,4 @@ Aplikasi ini dibuat menggunakan Framework Flutter dan Firebase ML kit.<br>
 - Beranda<br>
 ![Beranda](/screenshot/home.png)<br>
 - Baca Teks dan Terjemahkan<br>
-<img src="/screenshot/bacagambar.png" height ="30%">
+<img src="/screenshot/bacagambar.png" width ="30%">
