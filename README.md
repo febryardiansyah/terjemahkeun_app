@@ -10,7 +10,7 @@ Aplikasi ini dibuat menggunakan Framework Flutter dan Firebase ML kit.<br>
 https://drive.google.com/file/d/1mmBE4qjl5Jk8h7JmI-pVl5sJK7quu-7X/view?usp=sharing
 
 **IOS Release**<br>
-*Commming soon*
+*Comming soon (masih error saat ambil gambar dari kamera)*
 
 **Screenshoot**<br>
 - Beranda<br>
