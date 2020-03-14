@@ -16,6 +16,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
     return Scaffold(
+//      backgroundColor: Color(0xFF33B6FF),
       body: ListView(
         children: <Widget>[
           Stack(
