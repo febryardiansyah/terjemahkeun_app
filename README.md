@@ -7,9 +7,10 @@ adalah aplikasi yang dapat membaca teks didalam gambar dan menerjemahkannya anta
 Aplikasi ini dibuat menggunakan Framework Flutter dan Firebase ML kit.<br>
 
 **Android Release**<br>
+https://drive.google.com/drive/u/0/folders/1GG2v8nuDtJk-ultnB3nMAmH0S8pVhnIR
 
-**IOS Release*<br>
-*Commming soon
+**IOS Release**<br>
+*Commming soon*
 
 **Screenshoot**<br>
 - Beranda<br>
