@@ -7,7 +7,7 @@ adalah aplikasi yang dapat membaca teks didalam gambar dan menerjemahkannya anta
 Aplikasi ini dibuat menggunakan Framework Flutter dan Firebase ML kit.<br>
 
 **Android Release**<br>
-https://drive.google.com/drive/u/0/folders/1GG2v8nuDtJk-ultnB3nMAmH0S8pVhnIR
+https://drive.google.com/file/d/1mmBE4qjl5Jk8h7JmI-pVl5sJK7quu-7X/view?usp=sharing
 
 **IOS Release**<br>
 *Commming soon*
